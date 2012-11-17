@@ -1,0 +1,1 @@
+{"Statistics":[{"Type":"10.0.0.125:11103", "Threads":128, "WorkloadPercentage":1.0,"AvailMem":10479136768.000000, "AvgDiskQLen":0.001000, "CPUUsage":6.250000, "NetworkBW":10086.134184},{ "Type":"Overall", "Threads":128, "WorkloadPercentage":1.00}]}

@@ -1,0 +1,1 @@
+{"BGClientStats":{"ratingunit":240,"expectedlatency":0.1,"interestingopsperc":95,"expectedstaleness":1}}

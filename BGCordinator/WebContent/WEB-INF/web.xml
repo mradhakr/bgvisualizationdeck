@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>BgCoordinator</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>Testing</servlet-name>
+    <servlet-class>TestingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Testing</servlet-name>
+    <url-pattern>/TestingServlet</url-pattern>
+  </servlet-mapping>
+  <context-param>
+	<param-name>classpathParamters</param-name>
+	<param-value>M:\CSCI685\BG_SUMITA_2ND_NOV\BG\build\bg.jar;M:\CSCI685\BG_SUMITA_2ND_NOV\BG\db\couchdb\lib\*;M:\CSCI685\BG_SUMITA_2ND_NOV\BG\build\classes\com\yahoo\ycsb com.yahoo.ycsb.Client</param-value>
+	</context-param>
+  <context-param>
+	<param-name>bgLocation</param-name>
+	<param-value>M:\CSCI685\BG_SUMITA_2ND_NOV\BG</param-value>
+  </context-param>
+   <context-param>
+	<param-name>datStoreJarlocation</param-name>
+	<param-value></param-value>
+  </context-param>
+   <context-param>
+	<param-name>ycsbClientlocation</param-name>
+	<param-value></param-value>
+  </context-param>
+  <context-param>
+	<param-name>commandType</param-name>
+	<param-value>roseindia</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>HelloServlet</display-name>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/HelloServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

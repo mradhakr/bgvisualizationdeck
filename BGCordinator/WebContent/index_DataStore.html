@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>BG Visualization Deck</title>
+<!-- Fonts -->
+<link rel="stylesheet" type="text/css" href="fonts/helioscond/font.css">
+<!-- YUI3 -->
+<link rel="stylesheet" type="text/css" href="styles/yui-panel-datatable.css">
+<script type="text/javascript" src="js/yui/yui.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/index.css">
+<script type="text/javascript" src="js/index.js"></script>
+
+</head>
+
+<body onload = "clearAll()">
+<div id="daNav">
+    <div id="topShadow"></div>
+    <div id="topRow"></div>
+    <ul class="ui">
+        <li rel="Data Store">Data Store</li>
+        <li rel="Machine Health">Machine Health</li>
+        <li rel="Benchmark Settings">Benchmark Settings</li>
+        <li rel="Social Benchmark">Social Benchmark</li>
+        <li rel="Social Rating">Social Rating</li>
+        <li rel="Social Op Rating">Social Op Rating</li>
+        <li rel="Active Nodes">Active Nodes</li>
+    </ul>
+    <div id="botShadow"></div>
+</div>
+
+<div id="daTitle"></div>
+<div id="daBody" class="yui3-skin-sam">
+<div style="min-height:100px; display:inline-block">
+	<form  name="TestingServlet" method="post">
+	<input type="text" name="hiddentxt" value="hiddentxt" id="hiddentxt" style="visibility:hidden;">
+	<input type="text" name="hiddenresponse" value="hiddenresponse" id="hiddenresponse" style="visibility:hidden;">
+	<table border = '0'>
+	<tr>
+			<td><b>Data Store Parameter:</b></td>
+			<td>&nbsp;&nbsp;<b>Name</b></td>
+			<td><input type="text" id="key" style="width:60px;"></td>
+			<td>&nbsp;&nbsp;<b>Value</b></td>
+			<td><input type="text" id="val" style="width:60px;"></td>
+			<td><input type="button" name="addParamDs" value="Add" style="width:80px;" onclick="addParams()"></td>
+			<td><input type="button" name="RepParamDS" value="Replace Value" style="width:80px;" onclick="replaceVal()"></td>
+			
+	</tr>
+	<tr>
+			<td><b></b></td>
+			<td>&nbsp;&nbsp;<b>Client Class</b></td>
+			<td><input type="text" id="clientval" name="clientval" style="width:60px;"></td>
+	</tr>
+     
+      <table style="border:1px solid black;border-collapse:collapse;margin-top:25px; visibility:hidden;" id="ParamTable" >
+	  <tr><th style="border:1px solid black;" colspan="3">Data Store Parameters</th></tr>
+	  <tr>
+      <th style="border:1px solid black;">Name</th>
+      <th style="border:1px solid black;">Value</th>
+	  <th style="border:1px solid black; width:17px; height:17px;">Remove</th>
+	  </tr>
+      </table>
+	  </table>
+      
+      <div style="margin-top:10px;margin-left:390px;">
+    	<input type="button" name="click_event" value="Test Data Store" style="height:25px;width=100px" onclick="test()" >
+	   </div>
+
+	<table border = '0' style="margin-top:10px;">
+        <tr>
+        <td>BG Node IP</td>
+        <td>:</td>
+        <td><input type="text" id="BGListIP" style="width:55px"/></td>
+        <td>BG Node Port</td>
+        <td>:</td>
+        <td><input type="text" id="BGLIstPt" style="width:55px"/></td>
+        <td><input type="button" name="addList" value="Add Node" style="height:25px;width:80px;" onclick="addNode()"/></td>
+        </tr>
+      </table>
+      <table style="border:1px solid black;border-collapse:collapse;margin-top:10px;visibility:hidden;" id="bgTable">
+		  <tr><th style="border:1px solid black;" colspan="3">List of BG Nodes</th></tr>
+				<tr>
+		  <th style="border:1px solid black;">IP</th>
+		  <th style="border:1px solid black;">Port</th>
+		  <th style="border:1px solid black; width:17px; height:17px;">Remove</th>
+				</tr>
+      </table>
+   
+	  <table border = '0' style="margin-top:10px;">
+			<tr>
+			<td colspan="2" align="center"><b><u>Target BG Specs</u></b></td>
+			<td></td>
+			<td colspan="2" align="center"><b><u>BG Database Stats</u></b></td>
+			</tr>
+			<tr>
+			<td>User Count</td>
+			<td><input type="text" id="UsrCntDS" value = "10000" style="width:110px;height:15px;"></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>User Count</td>
+			<td><input type="text" id="UsrCntStat" style="width:110px; height:15px;" readonly></td>
+			</tr>
+			<tr>
+			<td>Friends per User</td>
+			<td><input type="text" id="FrndCntDS" value = "50" style="width:110px; height:15px;"></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>Average Confirmed Friends Per User</td>
+			<td><input type="text" id="FrndCntStat" style="width:110px; height:15px;" readonly></td>
+			</tr>
+			<tr>
+			<td>Resource per User</td>
+			<td><input type="text" id="ResCntDS" value = "10" style="width:110px; height:15px;"></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>Average Pending Friends Per User</td>
+			<td><input type="text" id="PendFrndCntStat"  style="width:110px; height:15px;" readonly></td>
+			</tr>
+			<tr>
+			<td>Image Available</td>
+			<td><select style="width:115px; height:20px;"><option>True</option><option>False</option></select>
+			</td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>Resource Count Per User</td>
+	 
+			<td><input type="text" id="ResCntStat" style="width:110px; height:15px;"></td>
+			</tr>
+			<tr>
+			<td>Image size (KB)</td>
+			<td><input type="text" id="ImgSize" value = "2" style="width:110px; height:15px;">&nbsp;</td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			 <td>Comment Count Per Resource</td>
+			<td><input type="text" id="CommCntStat"  style="width:110px; height:15px;">&nbsp;</td>
+			</tr>
+			<tr>
+			<td>Request distribution</td>
+			<td><select id="reqDistDW" style="width:115px; height:20px;"><option>dzipfian</option><option>uniform</option></select></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td colspan="2" align="center"><input type="button" name="ChkStat" value="Query Data Store" style="height:25px;width:110px;" onclick="queryDataStore()"></td>
+			</tr>
+			<tr>
+			<td>Request Mean</td>
+			<td><input type="text" id="requestmean" value = "0.27" style="width:110px; height:15px;"></td>
+			</tr>
+			<tr>
+			<td>Thread Count</td>
+			<td><input type="text" id="threadcount" value = "1" style="width:110px; height:15px;"></td>
+			</tr>
+			<tr>
+			<tr>
+			<td>% of Confirmed Friends</td>
+			<td><input type="text" id="per_Confirmed_Friends" value = "100%" style="width:110px; height:15px;"></td>
+			</tr>
+			<tr>
+			<td>Import File</td>
+			<td><input type="file" id="input" onchange="readFile(this.files)" style="height:25px;"></td>
+			<!--<td><input type="button" id="ImportFile" style="height:25px;width:75px;" value="Import" onclick="readFile()"></td>-->
+			</tr>
+			<tr>
+			<td>File Path: Export</td>
+			<td><input type="text" id="FilePath" style="height:15px;"></td>
+			<td><input type="button" name="ExportFile" style="width:75px; height:25px;" value="Export" onclick="saveFile()"></td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><input type="button" name="click_event" value="Populate Data Store"  style="height:25px;width:115px;margin-top:10px;" onclick="validateProps()"></td>
+			</tr>
+	</table>
+	</form>
+</div>
+
+</div>
+</body>
+</html>
+			

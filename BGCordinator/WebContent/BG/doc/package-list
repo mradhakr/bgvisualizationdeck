@@ -1,0 +1,16 @@
+KosarSolo
+SQLTrigQR
+applicationCache
+basicDB
+com.yahoo.ycsb
+com.yahoo.ycsb.generator
+edu.usc.bg
+edu.usc.bg.cloud
+edu.usc.bg.generator
+edu.usc.bg.measurements
+edu.usc.bg.validator
+edu.usc.bg.workloads
+mongoDB
+relational
+simpleRelational
+sqlTrigSemiData
